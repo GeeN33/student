@@ -1,6 +1,5 @@
 from functions import load_students, load_professions
 from utils import get_student_by_pk, get_profession_by_title,check_fitness,print_student,print_fitness
-
 def main():
     """ функция main здесь происходит ввод вывод пользователем """
     student_data = load_students()
@@ -19,9 +18,6 @@ def main():
         return quit()
 
     print_fitness(check_fitness(student, professions))
-
-
-
 
 main()
 
