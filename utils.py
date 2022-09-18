@@ -1,5 +1,7 @@
 import re
-def get_student_by_pk(data:{}, pk:int) -> {}:
+
+
+def get_student_by_pk(data: list, pk: int) -> dict:
     """
      Получает словарь с данными студента по его pk
     :param data: students.json
@@ -8,10 +10,11 @@ def get_student_by_pk(data:{}, pk:int) -> {}:
     """
     for d in data:
         if d['pk'] == pk:
-          return d
+            return d
     return {}
 
-def get_profession_by_title(data:{},title:str) ->{}:
+
+def get_profession_by_title(data: list, title: str) -> dict:
     """
     Получает словарь с инфо о профе по названию
     :param data: professions.json
@@ -23,7 +26,8 @@ def get_profession_by_title(data:{},title:str) ->{}:
             return d["skills"]
     return {}
 
-def check_fitness(student:{}, professions:{}) ->{}:
+
+def check_fitness(student: dict, professions: dict) -> dict:
     """
     получает студента и профессию, возвращяет словарь знает не знает языки
     :param student: студента
@@ -34,10 +38,11 @@ def check_fitness(student:{}, professions:{}) ->{}:
     profession = set(professions)
     has = list(skills.intersection(profession))
     lacks = list(profession.difference(skills))
-    fit_percent = int(len(has)/(len(profession)/100))
-    return {"full_name":student["full_name"], "has":has, "lacks":lacks, "fit_percent":fit_percent}
+    fit_percent = int(len(has) / (len(profession) / 100))
+    return {"full_name": student["full_name"], "has": has, "lacks": lacks, "fit_percent": fit_percent}
 
-def print_student(student:{})->None:
+
+def print_student(student: dict) -> None:
     """
     Получает словарь студента и печатает
     :param student: словарь студента
@@ -46,7 +51,8 @@ def print_student(student:{})->None:
     check_login(student['login'])
     print(f"Знает {', '.join(student['skills'])}")
 
-def print_fitness(check_fitness:{})->None:
+
+def print_fitness(check_fitness: dict) -> None:
     """
      Получает словарь знает не знает языки и печатает
     :param check_fitness: словарь знает не знает языки
@@ -55,7 +61,8 @@ def print_fitness(check_fitness:{})->None:
     print(f"{check_fitness['full_name']} знает {', '.join(check_fitness['has'])}")
     print(f"{check_fitness['full_name']} не знает  {', '.join(check_fitness['lacks'])}")
 
-def check_login(s:str)->None:
+
+def check_login(s: str) -> None:
     """
      функция с помощью регулярного выражения проверяет логин на корректность.
     :param логин:
